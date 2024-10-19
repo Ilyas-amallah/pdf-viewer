@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Viewer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body, html {
+            margin: 0;
+            height: 100%;
+            font-family: 'Arial', sans-serif;
+            background-color: #e9ecef;
+        }
+        #pdfContainer {
+            position: relative;
+            width: 100%;
+            height: 100%; /* Full height */
+            overflow: hidden;
+            border: 1px solid #ced4da; /* Light gray */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            background-color: white;
+            border-radius: 8px; /* Rounded corners */
+            margin: 20px; /* Space from edges */
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 8px; /* Match container rounded corners */
+        }
+        .fullscreen-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            padding: 10px 15px;
+            font-size: 16px;
+            background-color: #28a745; /* Green */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+        }
+        .fullscreen-btn:hover {
+            background-color: #218838; /* Darker green */
+            transform: scale(1.05);
+        }
+        .fullscreen-btn:focus {
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+
+<div id="pdfContainer">
+    <iframe src="file:///C:/Users/ilyas/Downloads/Documents/default-pdf.pdf" id="pdfIframe"></iframe>
+    <button class="fullscreen-btn" onclick="toggleFullscreen()">
+        <i class="fas fa-expand"></i> Fullscreen
+    </button>
+</div>
+
+<script>
+function toggleFullscreen() {
+    const pdfContainer = document.getElementById('pdfContainer');
+    if (!document.fullscreenElement) {
+        pdfContainer.requestFullscreen().catch(err => {
+            console.error(`Error attempting to enable full-screen mode: ${err.message}`);
+        });
+    } else {
+        document.exitFullscreen();
+    }
+}
+</script>
+
+</body>
+</html>
